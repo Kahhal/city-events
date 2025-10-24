@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title data-i18n="page.events.title">كل الفعاليات</title>
+
+  <!-- Bootstrap RTL -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.rtl.min.css" rel="stylesheet" />
+  <!-- Styles (lowercase path) -->
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+
+<body>
+
+  <!-- Navbar with logo + language flags -->
+  <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold d-flex align-items-center gap-2" href="index.html">
+        <img src="assets/img/logo1.png" alt="Logo" width="28" height="28" />
+        <span data-i18n="nav.brand">دليل الفعاليات</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#nav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="nav" class="collapse navbar-collapse">
+        <ul class="navbar-nav ms-auto align-items-lg-center">
+          <li class="nav-item"><a class="nav-link" href="index.html" data-i18n="nav.home">الرئيسية</a></li>
+          <li class="nav-item"><a class="nav-link active" href="events.html" data-i18n="nav.events">كل الفعاليات</a>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="about.html" data-i18n="nav.about">عن الدليل</a></li>
+          <li class="nav-item"><a class="nav-link" href="contact.html" data-i18n="nav.contact">اتصل بنا</a></li>
+        </ul>
+        <div class="d-flex align-items-center gap-2 ms-lg-3">
+          <button id="langAr" type="button" class="btn btn-sm btn-outline-secondary" title="العربية">
+            <img src="assets/img/flag-ar.png" alt="AR" width="18" height="18">
+          </button>
+          <button id="langEn" type="button" class="btn btn-sm btn-outline-secondary" title="English">
+            <img src="assets/img/flag-en.png" alt="EN" width="18" height="18">
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container py-4">
+    <h1 class="h4 mb-3" data-i18n="page.events.title">كل الفعاليات</h1>
+
+    <!-- Filters -->
+    <div class="row g-2 align-items-end mb-3">
+      <div class="col-12 col-sm-4">
+        <label class="form-label" for="cat" data-i18n="filter.category">التصنيف</label>
+        <select id="cat" class="form-select">
+          <option value="" data-i18n="filter.allCats">كل التصنيفات</option>
+          <option value="music" data-i18n="cat.music">موسيقى</option>
+          <option value="culture" data-i18n="cat.culture">ثقافة</option>
+          <option value="sport" data-i18n="cat.sport">رياضة</option>
+          <option value="family" data-i18n="cat.family">عائلي</option>
+        </select>
+      </div>
+      <div class="col-12 col-sm-4">
+        <label class="form-label" for="date" data-i18n="filter.fromDate">ابتداءً من التاريخ</label>
+        <input id="date" type="date" class="form-control" />
+      </div>
+      <div class="col-12 col-sm-4">
+        <button id="resetFilters" class="btn btn-outline-secondary w-100" data-i18n="filter.clear">مسح المرشحات</button>
+      </div>
+    </div>
+
+    <!-- Events grid -->
+    <div id="events" class="row g-3">
+      <!-- نستخدم صورك: event1.jpg..event4.jpg -->
+      <!-- 1 -->
+      <div class="col-12 col-sm-6 col-lg-4 event" data-cat="music" data-date="2025-11-01">
+        <div class="card h-100 shadow-sm">
+          <img src="assets/img/event1.jpg" class="card-img-top" alt="ليلة موسيقية" loading="lazy" decoding="async">
+          <div class="card-body">
+            <h5 class="card-title">ليلة موسيقية</h5>
+            <p class="mb-2"><span class="badge text-bg-danger" data-i18n="cat.music">موسيقى</span></p>
+            <p class="small text-muted">01-11-2025 • عمّان</p>
+            <a href="event.html" class="btn btn-outline-primary btn-sm" data-i18n="btn.details">التفاصيل</a>
+          </div>
+        </div>
+      </div>
+      <!-- 2 -->
+      <div class="col-12 col-sm-6 col-lg-4 event" data-cat="culture" data-date="2025-11-02">
+        <div class="card h-100 shadow-sm">
+          <img src="assets/img/event3.jpg" class="card-img-top" alt="معرض كتب" loading="lazy" decoding="async">
+          <div class="card-body">
+            <h5 class="card-title">معرض الكتب المصغّر</h5>
+            <p class="mb-2"><span class="badge text-bg-primary" data-i18n="cat.culture">ثقافة</span></p>
+            <p class="small text-muted">02-11-2025 • الزرقاء</p>
+            <a href="event.html" class="btn btn-outline-primary btn-sm" data-i18n="btn.details">التفاصيل</a>
+          </div>
+        </div>
+      </div>
+      <!-- 3 -->
+      <div class="col-12 col-sm-6 col-lg-4 event" data-cat="family" data-date="2025-11-03">
+        <div class="card h-100 shadow-sm">
+          <img src="assets/img/event4.jpg" class="card-img-top" alt="يوم العائلة" loading="lazy" decoding="async">
+          <div class="card-body">
+            <h5 class="card-title">يوم العائلة في الحديقة</h5>
+            <p class="mb-2"><span class="badge text-bg-success" data-i18n="cat.family">عائلي</span></p>
+            <p class="small text-muted">03-11-2025 • عمّان</p>
+            <a href="event.html" class="btn btn-outline-primary btn-sm" data-i18n="btn.details">التفاصيل</a>
+          </div>
+        </div>
+      </div>
+      <!-- 4 -->
+      <div class="col-12 col-sm-6 col-lg-4 event" data-cat="sport" data-date="2025-11-04">
+        <div class="card h-100 shadow-sm">
+          <img src="assets/img/event2.jpg" class="card-img-top" alt="بطولة خماسية" loading="lazy" decoding="async">
+          <div class="card-body">
+            <h5 class="card-title">بطولة خماسية</h5>
+            <p class="mb-2"><span class="badge text-bg-warning" data-i18n="cat.sport">رياضة</span></p>
+            <p class="small text-muted">04-11-2025 • العقبة</p>
+            <a href="event.html" class="btn btn-outline-primary btn-sm" data-i18n="btn.details">التفاصيل</a>
+          </div>
+        </div>
+      </div>
+      <!-- 5 -->
+      <div class="col-12 col-sm-6 col-lg-4 event" data-cat="music" data-date="2025-11-05">
+        <div class="card h-100 shadow-sm">
+          <img src="assets/img/event1.jpg" class="card-img-top" alt="أمسية جاز" loading="lazy" decoding="async">
+          <div class="card-body">
+            <h5 class="card-title">أمسية جاز ثلاثية</h5>
+            <p class="mb-2"><span class="badge text-bg-danger" data-i18n="cat.music">موسيقى</span></p>
+            <p class="small text-muted">05-11-2025 • إربد</p>
+            <a href="event.html" class="btn btn-outline-primary btn-sm" data-i18n="btn.details">التفاصيل</a>
+          </div>
+        </div>
+      </div>
+      <!-- 6 -->
+      <div class="col-12 col-sm-6 col-lg-4 event" data-cat="culture" data-date="2025-11-06">
+        <div class="card h-100 shadow-sm">
+          <img src="assets/img/event3.jpg" class="card-img-top" alt="أمسية تصوير" loading="lazy" decoding="async">
+          <div class="card-body">
+            <h5 class="card-title">أمسية: فن التصوير</h5>
+            <p class="mb-2"><span class="badge text-bg-primary" data-i18n="cat.culture">ثقافة</span></p>
+            <p class="small text-muted">06-11-2025 • السلط</p>
+            <a href="event.html" class="btn btn-outline-primary btn-sm" data-i18n="btn.details">التفاصيل</a>
+          </div>
+        </div>
+      </div>
+      <!-- 7 -->
+      <div class="col-12 col-sm-6 col-lg-4 event" data-cat="family" data-date="2025-11-07">
+        <div class="card h-100 shadow-sm">
+          <img src="assets/img/event4.jpg" class="card-img-top" alt="مسرحية أطفال" loading="lazy" decoding="async">
+          <div class="card-body">
+            <h5 class="card-title">مسرحية للأطفال</h5>
+            <p class="mb-2"><span class="badge text-bg-success" data-i18n="cat.family">عائلي</span></p>
+            <p class="small text-muted">07-11-2025 • عمّان</p>
+            <a href="event.html" class="btn btn-outline-primary btn-sm" data-i18n="btn.details">التفاصيل</a>
+          </div>
+        </div>
+      </div>
+      <!-- 8 -->
+      <div class="col-12 col-sm-6 col-lg-4 event" data-cat="sport" data-date="2025-11-08">
+        <div class="card h-100 shadow-sm">
+          <img src="assets/img/event2.jpg" class="card-img-top" alt="جولة دراجات" loading="lazy" decoding="async">
+          <div class="card-body">
+            <h5 class="card-title">جولة دراجات صباحية</h5>
+            <p class="mb-2"><span class="badge text-bg-warning" data-i18n="cat.sport">رياضة</span></p>
+            <p class="small text-muted">08-11-2025 • مادبا</p>
+            <a href="event.html" class="btn btn-outline-primary btn-sm" data-i18n="btn.details">التفاصيل</a>
+          </div>
+        </div>
+      </div>
+      <!-- 9 -->
+      <div class="col-12 col-sm-6 col-lg-4 event" data-cat="music" data-date="2025-11-09">
+        <div class="card h-100 shadow-sm">
+          <img src="assets/img/event1.jpg" class="card-img-top" alt="جوقة الجامعة" loading="lazy" decoding="async">
+          <div class="card-body">
+            <h5 class="card-title">جوقة الجامعة</h5>
+            <p class="mb-2"><span class="badge text-bg-danger" data-i18n="cat.music">موسيقى</span></p>
+            <p class="small text-muted">09-11-2025 • عمّان</p>
+            <a href="event.html" class="btn btn-outline-primary btn-sm" data-i18n="btn.details">التفاصيل</a>
+          </div>
+        </div>
+      </div>
+      <!-- 10 -->
+      <div class="col-12 col-sm-6 col-lg-4 event" data-cat="culture" data-date="2025-11-10">
+        <div class="card h-100 shadow-sm">
+          <img src="assets/img/event3.jpg" class="card-img-top" alt="أمسية شعرية" loading="lazy" decoding="async">
+          <div class="card-body">
+            <h5 class="card-title">أمسية شعرية</h5>
+            <p class="mb-2"><span class="badge text-bg-primary" data-i18n="cat.culture">ثقافة</span></p>
+            <p class="small text-muted">10-11-2025 • الزرقاء</p>
+            <a href="event.html" class="btn btn-outline-primary btn-sm" data-i18n="btn.details">التفاصيل</a>
+          </div>
+        </div>
+      </div>
+      <!-- 11 -->
+      <div class="col-12 col-sm-6 col-lg-4 event" data-cat="family" data-date="2025-11-11">
+        <div class="card h-100 shadow-sm">
+          <img src="assets/img/event4.jpg" class="card-img-top" alt="سوق العائلة" loading="lazy" decoding="async">
+          <div class="card-body">
+            <h5 class="card-title">سوق الأعياد العائلي</h5>
+            <p class="mb-2"><span class="badge text-bg-success" data-i18n="cat.family">عائلي</span></p>
+            <p class="small text-muted">11-11-2025 • عمّان</p>
+            <a href="event.html" class="btn btn-outline-primary btn-sm" data-i18n="btn.details">التفاصيل</a>
+          </div>
+        </div>
+      </div>
+      <!-- 12 -->
+      <div class="col-12 col-sm-6 col-lg-4 event" data-cat="sport" data-date="2025-11-12">
+        <div class="card h-100 shadow-sm">
+          <img src="assets/img/event2.jpg" class="card-img-top" alt="ماراثون المدينة" loading="lazy" decoding="async">
+          <div class="card-body">
+            <h5 class="card-title">ماراثون المدينة</h5>
+            <p class="mb-2"><span class="badge text-bg-warning" data-i18n="cat.sport">رياضة</span></p>
+            <p class="small text-muted">12-11-2025 • العقبة</p>
+            <a href="event.html" class="btn btn-outline-primary btn-sm" data-i18n="btn.details">التفاصيل</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-top py-4 mt-auto">
+    <div class="container d-flex justify-content-between align-items-center small text-muted">
+      <span>© 2025 <span data-i18n="nav.brand">دليل الفعاليات</span></span>
+      <a href="#" class="text-decoration-none" id="toTop" data-i18n="footer.backTop">العودة للأعلى ↑</a>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

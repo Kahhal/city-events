@@ -1,0 +1,294 @@
+/* ========================================================================
+   City Events — Contrast Fix (Bootstrap‑aware, RTL/AR friendly)
+   Purpose: Improve color contrast ONLY, without layout changes.
+   Usage: Include AFTER your current CSS on every page.
+   ========================================================================= */
+
+/* -------------------------- Global / Bootstrap vars -------------------------- */
+:root {
+  /* Base surfaces & text */
+  --ce-body-bg: #ffffff;
+  --ce-body-text: #0b1220;
+  /* very dark slate */
+  --ce-muted: #475569;
+  /* readable muted */
+  --ce-border: #e2e8f0;
+
+  /* Brand / actions */
+  --ce-primary: #2563eb;
+  /* blue-600 */
+  --ce-primary-strong: #1e40af;
+  /* blue-800 */
+  --ce-link: #1e3a8a;
+  /* blue-800 */
+  --ce-link-hover: #1d4ed8;
+  /* blue-700 */
+
+  /* Dark sections */
+  --ce-dark: #0f172a;
+  /* slate-900 */
+  --ce-dark-text: #e5e7eb;
+  /* slate-200 */
+  --ce-dark-muted: #cbd5e1;
+  /* slate-300 */
+}
+
+/* Prefer system dark scheme if the site later opts‑in */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --ce-body-bg: #0b1220;
+    --ce-body-text: #e5e7eb;
+    --ce-muted: #cbd5e1;
+    --ce-border: #1f2937;
+
+    --ce-primary: #60a5fa;
+    /* blue-400 */
+    --ce-primary-strong: #93c5fd;
+    /* blue-300 */
+    --ce-link: #93c5fd;
+    --ce-link-hover: #bfdbfe;
+
+    --ce-dark: #0b1220;
+    --ce-dark-text: #f3f4f6;
+    --ce-dark-muted: #d1d5db;
+  }
+}
+
+/* Map to Bootstrap 5.3 CSS variables (safe overrides) */
+:root {
+  --bs-body-bg: var(--ce-body-bg);
+  --bs-body-color: var(--ce-body-text);
+  --bs-link-color: var(--ce-link);
+  --bs-link-hover-color: var(--ce-link-hover);
+  --bs-border-color: var(--ce-border);
+  --bs-secondary-color: var(--ce-muted);
+  /* affects .text-muted/.text-body-secondary */
+}
+
+html,
+body {
+  background-color: var(--ce-body-bg) !important;
+  color: var(--ce-body-text) !important;
+}
+
+/* ------------------------------- Typography -------------------------------- */
+.text-muted,
+.small,
+small,
+.text-body-secondary {
+  color: var(--ce-muted) !important;
+}
+
+::placeholder {
+  color: color-mix(in oklab, var(--ce-muted) 85%, transparent) !important;
+  opacity: 1 !important;
+}
+
+:focus-visible {
+  outline: 3px solid color-mix(in oklab, var(--ce-primary) 55%, white 45%) !important;
+  outline-offset: 2px;
+}
+
+/* --------------------------------- Navbar ---------------------------------- */
+.navbar {
+  --bs-navbar-color: var(--ce-body-text);
+  --bs-navbar-hover-color: var(--ce-primary-strong);
+  --bs-navbar-disabled-color: color-mix(in oklab, var(--ce-body-text) 45%, white 55%);
+  --bs-navbar-active-color: var(--ce-primary-strong);
+  --bs-navbar-brand-color: var(--ce-body-text);
+  --bs-navbar-brand-hover-color: var(--ce-primary-strong);
+  --bs-navbar-toggler-border-color: rgba(2, 6, 23, .2);
+}
+
+/* Ensure toggler icon is sufficiently dark on light backgrounds */
+.navbar .navbar-toggler-icon {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(11,15,25,0.85)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+/* Fix inline brand color set to low‑contrast (e.g., honeydew) */
+.navbar-brand p {
+  color: var(--ce-body-text) !important;
+  margin: 0;
+}
+
+/* ---------------------------------- Hero ----------------------------------- */
+/* If your hero has imagery, this overlay boosts legibility without layout changes */
+.hero {
+  position: relative;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, .22), rgba(0, 0, 0, .08) 38%, rgba(0, 0, 0, 0));
+  opacity: 0.5;
+  display: none;
+}
+
+.hero.has-image::before {
+  display: block;
+}
+
+/* CTA inside hero: force clear button style even if anchor lacks .btn-primary */
+.hero .btn {
+  background-color: var(--ce-primary) !important;
+  border-color: var(--ce-primary-strong) !important;
+  color: #fff !important;
+}
+
+.hero .btn:hover {
+  background-color: var(--ce-primary-strong) !important;
+}
+
+/* Override any nested <p style="color: azure"> inside the button */
+.hero .btn p {
+  color: #fff !important;
+  margin: 0;
+}
+
+/* --------------------------------- Buttons --------------------------------- */
+.btn-primary {
+  --bs-btn-color: #fff;
+  --bs-btn-bg: var(--ce-primary);
+  --bs-btn-border-color: var(--ce-primary-strong);
+  --bs-btn-hover-bg: var(--ce-primary-strong);
+  --bs-btn-hover-border-color: var(--ce-primary-strong);
+  --bs-btn-active-bg: var(--ce-link-hover);
+  --bs-btn-active-border-color: var(--ce-link-hover);
+  --bs-btn-focus-shadow-rgb: 37, 99, 235;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--ce-primary-strong);
+  --bs-btn-border-color: var(--ce-primary-strong);
+  --bs-btn-hover-bg: var(--ce-primary-strong);
+  --bs-btn-hover-color: #fff;
+  --bs-btn-hover-border-color: var(--ce-primary-strong);
+}
+
+/* ---------------------------------- Cards ---------------------------------- */
+.card {
+  background-color: #f8fafc !important;
+  border-color: var(--ce-border) !important;
+  color: var(--ce-body-text) !important;
+}
+
+.card .card-title {
+  color: var(--ce-body-text) !important;
+}
+
+.card .text-muted,
+.card .small {
+  color: var(--ce-muted) !important;
+}
+
+/* ---------------------------------- Badges --------------------------------- */
+.badge.text-bg-primary {
+  background-color: #1e40af !important;
+  color: #fff !important;
+}
+
+.badge.text-bg-danger {
+  background-color: #b91c1c !important;
+  color: #fff !important;
+}
+
+.badge.text-bg-success {
+  background-color: #15803d !important;
+  color: #fff !important;
+}
+
+/* Use a deeper amber so white text passes contrast */
+.badge.text-bg-warning {
+  background-color: #b45309 !important;
+  color: #fff !important;
+}
+
+/* ---------------------------------- Forms ---------------------------------- */
+.form-control,
+.form-select {
+  color: var(--ce-body-text) !important;
+  background-color: #fff !important;
+  border-color: var(--ce-border) !important;
+}
+
+.form-label {
+  color: var(--ce-body-text) !important;
+}
+
+/* --------------------------------- Footer ---------------------------------- */
+footer,
+.site-footer,
+.page-footer {
+  background-color: #ffffff !important;
+  color: var(--ce-muted) !important;
+}
+
+footer a {
+  color: var(--ce-link) !important;
+  text-decoration: underline;
+  text-underline-offset: .18em;
+}
+
+footer a:hover {
+  color: var(--ce-link-hover) !important;
+}
+
+/* ------------------------------- Misc helpers ------------------------------- */
+.shadow-soft {
+  box-shadow: 0 8px 24px rgba(2, 6, 23, .08) !important;
+}
+
+/* High-contrast mode (Windows) */
+@media (forced-colors: active) {
+  * {
+    forced-color-adjust: auto;
+  }
+}
+
+/* ====================== Disable dark mode globally ====================== */
+/* Force the whole site to always render in LIGHT mode, regardless of OS setting */
+:root {
+  color-scheme: light;
+}
+
+/* If any earlier CSS (including Bootstrap or your styles.css) applies a
+   prefers-color-scheme: dark block, we override it here with LIGHT values. */
+@media (prefers-color-scheme: dark) {
+  :root {
+    /* Light palette (same as the normal/light values above) */
+    --ce-body-bg: #ffffff;
+    --ce-body-text: #0b1220;
+    --ce-muted: #475569;
+    --ce-border: #e2e8f0;
+
+    --ce-primary: #2563eb;
+    --ce-primary-strong: #1e40af;
+    --ce-link: #1e3a8a;
+    --ce-link-hover: #1d4ed8;
+
+    --ce-dark: #0f172a;
+    /* not used for page bg when forcing light */
+    --ce-dark-text: #e5e7eb;
+    /* kept for any dark sections you explicitly style */
+    --ce-dark-muted: #cbd5e1;
+  }
+
+  html,
+  body {
+    background-color: #ffffff !important;
+    color: #0b1220 !important;
+  }
+
+  /* Map again to Bootstrap vars to cancel any dark overrides in other files */
+  :root {
+    --bs-body-bg: #ffffff;
+    --bs-body-color: #0b1220;
+    --bs-link-color: #1e3a8a;
+    --bs-link-hover-color: #1d4ed8;
+    --bs-border-color: #e2e8f0;
+    --bs-secondary-color: #475569;
+  }
+}
